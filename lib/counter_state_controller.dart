@@ -10,7 +10,13 @@ class CounterController extends StateController<int> {
 
 final counterStateControllerProvider =
     StateNotifierProvider<CounterController>((_) {
+  print('I am in counterStateControllerProvider');
   return CounterController();
+});
+
+final cscp = Provider<int>((ref) {
+  print('I am in cscp Provider');
+  return ref.watch(counterStateControllerProvider.state);
 });
 
 class CounterStateControllerProvider extends ConsumerWidget {

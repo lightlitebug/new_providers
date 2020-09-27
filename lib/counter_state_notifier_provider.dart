@@ -10,7 +10,12 @@ class Counter extends StateNotifier<int> {
 }
 
 final counterStateNotifierProvider = StateNotifierProvider<Counter>((_) {
+  print('I am in counterStateNotifierProvider');
   return Counter();
+});
+
+final csnp = Provider<int>((ref) {
+  return ref.watch(counterStateNotifierProvider.state);
 });
 
 class CounterStateNotifierProvider extends ConsumerWidget {

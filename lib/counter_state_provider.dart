@@ -8,13 +8,13 @@ final counterStateProvider = StateProvider<int>((ref) {
 class CounterStateProvider extends ConsumerWidget {
   @override
   Widget build(BuildContext context, ScopedReader watch) {
-    final counter = watch(counterStateProvider);
+    final counter = watch(counterStateProvider).state;
 
     return Scaffold(
       appBar: AppBar(title: Text('StateProvider')),
       body: Center(
         child: Text(
-          '${counter.state}',
+          '$counter',
           style: TextStyle(fontSize: 60, fontWeight: FontWeight.bold),
         ),
       ),
@@ -25,13 +25,13 @@ class CounterStateProvider extends ConsumerWidget {
           children: [
             FloatingActionButton(
               child: Icon(Icons.add),
-              onPressed: () => counter.state++,
+              onPressed: () => context.read(counterStateProvider).state++,
               heroTag: null,
             ),
             SizedBox(width: 10.0),
             FloatingActionButton(
               child: Icon(Icons.remove),
-              onPressed: () => counter.state--,
+              onPressed: () => context.read(counterStateProvider).state--,
               heroTag: null,
             ),
           ],
